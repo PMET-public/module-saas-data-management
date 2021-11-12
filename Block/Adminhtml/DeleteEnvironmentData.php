@@ -18,7 +18,7 @@ class DeleteEnvironmentData extends Field
     /**
      * @var string
      */
-    protected $template = 'MagentoEse_SaasDataManagement::system/config/clear-environment.phtml';
+    protected $_template = 'MagentoEse_SaasDataManagement::system/config/clear-environment.phtml';
     //protected $_template = 'Magento_ServicesId::system/config/update-environment.phtml';
 
     /**
@@ -89,9 +89,10 @@ class DeleteEnvironmentData extends Field
         $html = $this->getLayout()->createBlock('Magento\Backend\Block\Widget\Button')->setData(
             [
                 'id' => 'clear_environment_button',
-                'label' => __('Clear Data Space Data')
+                'label' => __('Clear Environment Data')
             ]
         )->toHtml();
+
         // $html .= $this->getLayout()->createBlock('Magento\Backend\Block\Widget\Button')->setData(
         //     [
         //         'id' => 'cancel_environment_button',
