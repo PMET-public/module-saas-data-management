@@ -1,0 +1,82 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /* @var $block \Magento\ServicesId\Block\Adminhtml\System\Config\UpdateEnvironment */ ?>
+<script>
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/alert',
+        'prototype'
+    ], function($, modalAlert){
+
+        let requestEnvironmentSpan = $('#clear_environment_span');
+
+        $('#clear_environment_button').click(function () {
+            let environmentName = $('#services_connector_services_id_saas_environment_environment_name').val();
+            let environmentId = $('#services_connector_services_id_environment_id').val();
+            let params = {
+                'method': 'POST',
+                'uri': `registry/environments/${environmentId}/cleanup`,
+                //'uri': `registry`,
+                'environmentName': environmentName
+            };
+            new Ajax.Request('<?= $block->escapeUrl($block->getEnvironmentUrl()) ?>', {
+                parameters:     params,
+                loaderArea:     false,
+                asynchronous:   true,
+                onCreate: function() {
+                    requestEnvironmentSpan.find('.environment_clear').hide();
+                    requestEnvironmentSpan.find('.error').hide();
+                    requestEnvironmentSpan.find('.processing').show();
+                    $('#clear_environment_message_span').text('');
+                },
+                onSuccess: function(response) {
+                    requestEnvironmentSpan.find('.processing').hide();
+
+                    var resultText = '';
+                    if (response.status > 200) {
+                        resultText = response.statusText;
+                        showErrorAlert(resultText);
+                    } else if (response.responseJSON !== null
+                        && response.status === 200
+                        && !response.responseJSON.message
+                    ) {
+                        resultText = '<?= /* @noEscape */ __("Success. Reloading page...") ?>';
+                        requestEnvironmentSpan.find('.environment_cleared').show();
+                        location.reload();
+                    } else {
+                        resultText = '<?= /* @noEscape */ __("An error occurred clearing data space") ?>';
+                        requestEnvironmentSpan.find('.error').show();
+                        showErrorAlert(resultText);
+                    }
+                    $('#clear_environment_message_span').text(resultText);
+                }
+            });
+
+            function showErrorAlert(content) {
+                modalAlert({
+                    title: 'Magento Services Error',
+                    content: content,
+                    clickableOverlay: false,
+                    actions: {
+                        always: function() {}
+                    }
+                })
+            }
+        });
+    });
+</script>
+
+<?= $block->getButtonHtml() ?>
+<span class="update_environment-indicator" id="clear_environment_span">
+    <img class="processing" hidden="hidden" alt="Clearing environment" 
+    style="margin:0 5px" src="<?= $block->getViewFileUrl('images/process_spinner.gif') ?>"/>
+    <img class="environment_cleared" hidden="hidden" alt="Environment cleared" 
+    style="margin:-3px 5px" src="<?= $block->getViewFileUrl('images/rule_component_apply.gif') ?>"/>
+    <img class="error" hidden="hidden" alt="Error" style="margin:-1px 5px" 
+    src="<?= $block->getViewFileUrl('images/rule_component_remove.gif') ?>"/>
+    <span id="clear_environment_message_span"></span>
+</span>

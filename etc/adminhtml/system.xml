@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="services_connector">
+            <group id="services_id">
+                    <!-- <field id="sassdelete" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <label>Delete the sass</label>
+                        <comment>Delete the sass comment</comment>
+                        <config_path>services_connector/services_id/environment_name</config_path>
+                    </field> -->
+                    <field id="request_environment_delete" translate="label comment" type="button" sortOrder="9" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <!-- <label>Clear Data Space</label> -->
+                        <comment>*This may take up to 24 hours*</comment>
+                        <frontend_model>MagentoEse\SaasDataManagement\Block\Adminhtml\DeleteEnvironmentData</frontend_model>
+                    </field>
+                    <field id="environmentid" translate="label" type="hidden" sortOrder="10">
+                        <config_path>services_connector/services_id/environment_id</config_path>
+                    </field>
+            </group>
+        </section>
+    </system>
+</config>
