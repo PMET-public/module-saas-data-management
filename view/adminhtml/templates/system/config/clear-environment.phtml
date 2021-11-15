@@ -44,9 +44,9 @@
                         && response.status === 200
                         && !response.responseJSON.message
                     ) {
-                        resultText = '<?= /* @noEscape */ __("Success. Reloading page...") ?>';
+                        resultText = '<?= /* @noEscape */ __("Success. Data Space Cleared...") ?>';
                         requestEnvironmentSpan.find('.environment_cleared').show();
-                        location.reload();
+                        //location.reload();
                     } else {
                         resultText = '<?= /* @noEscape */ __("An error occurred clearing data space") ?>';
                         requestEnvironmentSpan.find('.error').show();

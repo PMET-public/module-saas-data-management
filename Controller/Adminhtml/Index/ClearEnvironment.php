@@ -20,7 +20,7 @@ use Psr\Log\LoggerInterface;
 /**
  * Controller responsible for communicating with the Magento SaaS Registry service
  */
-class Environment extends AbstractAction
+class ClearEnvironment extends AbstractAction
 {
     const ADMIN_RESOURCE = 'Magento_ServicesId::configuration';
 

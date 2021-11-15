@@ -24,7 +24,7 @@ class DeleteEnvironmentData extends Field
     /**
      * @var string
      */
-    private const ENVIRONMENT_URL = 'sassdatamanagement/index/environment';
+    private const ENVIRONMENT_URL = 'sassdatamanagement/index/clearenvironment';
 
     /**
      * @var ServicesConfigInterface
@@ -89,7 +89,7 @@ class DeleteEnvironmentData extends Field
         $html = $this->getLayout()->createBlock('Magento\Backend\Block\Widget\Button')->setData(
             [
                 'id' => 'clear_environment_button',
-                'label' => __('Clear Environment Data')
+                'label' => __('Clear Data Space Data')
             ]
         )->toHtml();
 
