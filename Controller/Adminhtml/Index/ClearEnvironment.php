@@ -19,6 +19,7 @@ use Psr\Log\LoggerInterface;
 use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\FlagManager;
 use Magento\Framework\Indexer\IndexerRegistry;
+
 /**
  * Controller responsible for communicating with the Magento SaaS Registry service
  */
@@ -105,9 +106,7 @@ class ClearEnvironment extends AbstractAction
         $this->indexerRegistry = $indexerRegistry;
         parent::__construct($context);
     }
-        
-        
-
+      
     /**
      * Execute middleware call
      *
@@ -127,11 +126,10 @@ class ClearEnvironment extends AbstractAction
         $result = $this->servicesClient->request($method, $url, $this->serializer->serialize($payload));
         
         if (isset($result['environmentId'])) {
-            foreach(self::FEED_TYPE as $feedType){
+            foreach (self::FEED_TYPE as $feedType) {
                 $this->resetIndexedData($feedType['indexerName']);
-                $this->resetSubmittedData($feedType['flagName'],$feedType['registryTableName']);
+                $this->resetSubmittedData($feedType['flagName'], $feedType['registryTableName']);
             }
-            
         } else {
             $result = 'An error occurred clearing the data space. See logs for details';
                 $this->logger->error(print_r($result));
@@ -155,7 +153,7 @@ class ClearEnvironment extends AbstractAction
      *
      * @throws \Zend_Db_Statement_Exception
      */
-    public function resetSubmittedData($flagName,$registryTableName): void
+    public function resetSubmittedData($flagName, $registryTableName): void
     {
         $connection = $this->resourceConnection->getConnection();
         $registryTable = $this->resourceConnection->getTableName($registryTableName);
