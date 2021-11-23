@@ -6,6 +6,9 @@
     "license": [
       "MIT"
     ],
+    "require":{
+      "magento/module-services-id": "*"
+    },
     "autoload": {
       "psr-4": {
         "MagentoEse\\SaasDataManagement\\": ""

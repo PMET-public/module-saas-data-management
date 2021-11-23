@@ -13,10 +13,18 @@
     ], function($, modalAlert){
 
         let requestEnvironmentSpan = $('#clear_environment_span');
-
+        console.log($('#services_connector_services_id_environment_id').val());
+        if($('#services_connector_services_id_environment_id').val()){
+            $('#clear_environment_button').show();
+            $('#row_services_connector_services_id_request_environment_delete > td.value > p').show();
+        }else{
+            $('#clear_environment_button').hide();
+            $('#row_services_connector_services_id_request_environment_delete > td.value > p').hide();
+        }
         $('#clear_environment_button').click(function () {
             let environmentName = $('#services_connector_services_id_saas_environment_environment_name').val();
             let environmentId = $('#services_connector_services_id_environment_id').val();
+            
             let params = {
                 'method': 'POST',
                 'uri': `registry/environments/${environmentId}/cleanup`,
