@@ -11,7 +11,7 @@
             <group id="services_id">
                     <field id="request_environment_delete" translate="label comment" type="button" sortOrder="9" showInDefault="1" showInWebsite="0" showInStore="0">
                         <!-- <label>Clear Data Space</label> -->
-                        <comment>*Link to documentation goes here*</comment>
+                        <comment>You will need to deactivate the Saas integration on other sites that are currently using the data space you wish to clear</comment>
                         <frontend_model>MagentoEse\SaasDataManagement\Block\Adminhtml\DeleteEnvironmentData</frontend_model>
                     </field>
                     <field id="environmentid" translate="label" type="hidden" sortOrder="10">
