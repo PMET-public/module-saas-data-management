@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace MagentoEse\SaasDataManagement\Controller\Adminhtml\Index;
 
+use Exception;
 use Magento\Backend\App\AbstractAction;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\Result\JsonFactory;
@@ -17,6 +18,7 @@ use Magento\ServicesId\Model\ServicesConfig;
 use Magento\ServicesId\Model\ServicesConfigInterface;
 use Psr\Log\LoggerInterface;
 use Magento\Framework\App\ResourceConnection;
+use Magento\Framework\Convert\Excel;
 use Magento\Framework\FlagManager;
 use Magento\Framework\Indexer\IndexerRegistry;
 
@@ -28,11 +30,19 @@ class ClearEnvironment extends AbstractAction
     const ADMIN_RESOURCE = 'Magento_ServicesId::configuration';
 
     const FEED_TYPE = [
-        ['type'=>'categories','flagName'=>'categories-feed-version','indexerName'=>'catalog_data_exporter_categories','registryTableName'=>'catalog_category_data_submitted_hash'],
-        ['type'=>'productoverrides','flagName'=>'product-overrides-feed-version','indexerName'=>'catalog_data_exporter_product_overrides','registryTableName'=>'catalog_product_override_data_submitted_hash'],
-        ['type'=>'variants','flagName'=>'variants-feed-version','indexerName'=>'catalog_data_exporter_product_variants','registryTableName'=>'catalog_product_variants_submitted_hash'],
-        ['type'=>'products','flagName'=>'products-feed-version','indexerName'=>'catalog_data_exporter_products','registryTableName'=>'catalog_product_data_submitted_hash'],
-        ['type'=>'productattributes','flagName'=>'product-attributes-feed-version','indexerName'=>'catalog_data_exporter_product_attributes','registryTableName'=>'catalog_product_attribute_data_submitted_hash']
+        ['type'=>'categories','flagName'=>'categories-feed-version','indexerName'=>'catalog_data_exporter_categories',
+        'registryTableName'=>'catalog_category_data_submitted_hash'],
+        ['type'=>'productoverrides','flagName'=>'product-overrides-feed-version',
+        'indexerName'=>'catalog_data_exporter_product_overrides',
+        'registryTableName'=>'catalog_product_override_data_submitted_hash'],
+        ['type'=>'variants','flagName'=>'variants-feed-version',
+        'indexerName'=>'catalog_data_exporter_product_variants',
+        'registryTableName'=>'catalog_product_variants_submitted_hash'],
+        ['type'=>'products','flagName'=>'products-feed-version','indexerName'=>'catalog_data_exporter_products',
+        'registryTableName'=>'catalog_product_data_submitted_hash'],
+        ['type'=>'productattributes','flagName'=>'product-attributes-feed-version',
+        'indexerName'=>'catalog_data_exporter_product_attributes',
+        'registryTableName'=>'catalog_product_attribute_data_submitted_hash']
     ];
     /**
      * @var ServicesConfigInterface
@@ -127,8 +137,13 @@ class ClearEnvironment extends AbstractAction
         
         if (isset($result['environmentId'])) {
             foreach (self::FEED_TYPE as $feedType) {
-                $this->resetIndexedData($feedType['indexerName']);
-                $this->resetSubmittedData($feedType['flagName'], $feedType['registryTableName']);
+                try {
+                    $this->resetIndexedData($feedType['indexerName']);
+                    $this->resetSubmittedData($feedType['flagName'], $feedType['registryTableName']);
+                } catch (Exception $e) {
+                    //ignore errors. some tables may not exist based on modules included
+                    $r = null;
+                }
             }
         } else {
             $result = 'An error occurred clearing the data space. See logs for details';
