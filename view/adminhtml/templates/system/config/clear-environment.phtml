@@ -1,10 +1,9 @@
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
+ * Copyright © Adobe, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 ?>
-<?php /* @var $block \Magento\ServicesId\Block\Adminhtml\System\Config\UpdateEnvironment */ ?>
 <script>
     require([
         'jquery',
@@ -13,17 +12,17 @@
     ], function($, modalAlert){
 
         let requestEnvironmentSpan = $('#clear_environment_span');
-        console.log($('#services_connector_services_id_environment_id').val());
-        if($('#services_connector_services_id_environment_id').val()){
+        console.log($('#sass_catalog_reset_sass_reset_environment_id').val());
+        if($('#sass_catalog_reset_sass_reset_environment_id').val()){
             $('#clear_environment_button').show();
-            $('#row_services_connector_services_id_request_environment_delete > td.value > p').show();
+            $('#row_sass_catalog_reset_sass_reset_request_environment_delete > td.value > p').show();
         }else{
             $('#clear_environment_button').hide();
-            $('#row_services_connector_services_id_request_environment_delete > td.value > p').hide();
+            $('#row_sass_catalog_reset_sass_reset_request_environment_delete > td.value > p').hide();
         }
         $('#clear_environment_button').click(function () {
-            let environmentName = $('#services_connector_services_id_saas_environment_environment_name').val();
-            let environmentId = $('#services_connector_services_id_environment_id').val();
+            let environmentName = $('#sass_catalog_reset_sass_reset_saas_environment_environment_name').val();
+            let environmentId = $('#sass_catalog_reset_sass_reset_environment_id').val();
             
             let params = {
                 'method': 'POST',

@@ -11,7 +11,7 @@ use Magento\Backend\Block\Template\Context;
 use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Data\Form\Element\AbstractElement;
-use Magento\ServicesId\Model\ServicesConfigInterface;
+use MagentoEse\SaasDataManagement\Model\ServicesConfigInterface;
 
 class DeleteEnvironmentData extends Field
 {
@@ -19,7 +19,6 @@ class DeleteEnvironmentData extends Field
      * @var string
      */
     protected $_template = 'MagentoEse_SaasDataManagement::system/config/clear-environment.phtml';
-    //protected $_template = 'Magento_ServicesId::system/config/update-environment.phtml';
 
     /**
      * @var string
