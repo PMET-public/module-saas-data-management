@@ -20,18 +20,19 @@ class ServicesConfig implements ServicesConfigInterface
     /**
      * Config path values for Services Id
      */
-    const CONFIG_PATH_PROJECT_ID = 'services_connector/services_id/project_id';
-    const CONFIG_PATH_PROJECT_NAME = 'services_connector/services_id/project_name';
-    const CONFIG_PATH_ENVIRONMENT = 'services_connector/services_id/environment';
-    const CONFIG_PATH_ENVIRONMENT_ID = 'services_connector/services_id/environment_id';
-    const CONFIG_PATH_ENVIRONMENT_NAME = 'services_connector/services_id/environment_name';
-    const CONFIG_PATH_REGISTRY_API_VERSION = 'services_connector/services_id/registry_api_version';
+    private const CONFIG_PATH_PROJECT_ID = 'services_connector/services_id/project_id';
+    private const CONFIG_PATH_PROJECT_NAME = 'services_connector/services_id/project_name';
+    private const CONFIG_PATH_ENVIRONMENT = 'services_connector/services_id/environment';
+    private const CONFIG_PATH_ENVIRONMENT_ID = 'services_connector/services_id/environment_id';
+    private const CONFIG_PATH_ENVIRONMENT_NAME = 'services_connector/services_id/environment_name';
+    private const CONFIG_PATH_REGISTRY_API_VERSION = 'services_connector/services_id/registry_api_version';
 
     /**
      * Config path values for Services Connector
      */
-    const CONFIG_PATH_SERVICES_CONNECTOR_ENVIRONMENT = 'magento_saas/environment';
-    const CONFIG_PATH_SERVICES_CONNECTOR_API_KEY = 'services_connector/services_connector_integration/{env}_api_key';
+    private const CONFIG_PATH_SERVICES_CONNECTOR_ENVIRONMENT = 'magento_saas/environment';
+    private const CONFIG_PATH_SERVICES_CONNECTOR_API_KEY =
+    'services_connector/services_connector_integration/{env}_api_key';
 
     /**
      * @var ScopeConfigInterface

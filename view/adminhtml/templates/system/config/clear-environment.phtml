@@ -13,12 +13,14 @@
 
         let requestEnvironmentSpan = $('#clear_environment_span');
         console.log($('#sass_catalog_reset_sass_reset_environment_id').val());
+        $('#row_sass_catalog_reset_sass_reset_environment_id > td.label > label > span').hide();
         if($('#sass_catalog_reset_sass_reset_environment_id').val()){
             $('#clear_environment_button').show();
             $('#row_sass_catalog_reset_sass_reset_request_environment_delete > td.value > p').show();
         }else{
-            $('#clear_environment_button').hide();
-            $('#row_sass_catalog_reset_sass_reset_request_environment_delete > td.value > p').hide();
+            $('#clear_environment_button').prop('disabled',true).css('opacity',0.5);
+            $('#row_sass_catalog_reset_sass_reset_request_environment_delete > td.value > p')
+            .prepend('<P style=color:red>NO DATA SPACE HAS BEEN ASSIGNED</P>');
         }
         $('#clear_environment_button').click(function () {
             let environmentName = $('#sass_catalog_reset_sass_reset_saas_environment_environment_name').val();
@@ -80,10 +82,11 @@
 <?= $block->getButtonHtml() ?>
 <span class="update_environment-indicator" id="clear_environment_span">
     <img class="processing" hidden="hidden" alt="Clearing environment" 
-    style="margin:0 5px" src="<?= $block->getViewFileUrl('images/process_spinner.gif') ?>"/>
+    style="margin:0 5px" src="<?= $escaper->escapeHtml($block->getViewFileUrl('images/process_spinner.gif')) ?>"/>
     <img class="environment_cleared" hidden="hidden" alt="Environment cleared" 
-    style="margin:-3px 5px" src="<?= $block->getViewFileUrl('images/rule_component_apply.gif') ?>"/>
+    style="margin:-3px 5px" 
+    src="<?= $escaper->escapeHtml($block->getViewFileUrl('images/rule_component_apply.gif')) ?>"/>
     <img class="error" hidden="hidden" alt="Error" style="margin:-1px 5px" 
-    src="<?= $block->getViewFileUrl('images/rule_component_remove.gif') ?>"/>
+    src="<?= $escaper->escapeHtml($block->getViewFileUrl('images/rule_component_remove.gif')) ?>"/>
     <span id="clear_environment_message_span"></span>
 </span>

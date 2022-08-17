@@ -25,13 +25,13 @@ class ServicesClient implements ServicesClientInterface
     /**
      * Config paths
      */
-    const ROUTE_CONFIG_PATH = 'services_connector/services_id/registry_api_path';
-    const ENVIRONMENT_CONFIG_PATH = 'magento_saas/environment';
+    private const ROUTE_CONFIG_PATH = 'services_connector/services_id/registry_api_path';
+    private const ENVIRONMENT_CONFIG_PATH = 'magento_saas/environment';
 
     /**
      * Extension name for Services Connector
      */
-    const EXTENSION_NAME = 'MagentoEse_SaasDataManagement';
+    private const EXTENSION_NAME = 'MagentoEse_SaasDataManagement';
 
     /**
      * @var ClientResolverInterface

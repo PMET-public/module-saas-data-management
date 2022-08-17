@@ -25,9 +25,9 @@ use Magento\Framework\Indexer\IndexerRegistry;
  */
 class ClearEnvironment extends AbstractAction
 {
-    const ADMIN_RESOURCE = 'Magento_ServicesId::configuration';
+    public const ADMIN_RESOURCE = 'Magento_ServicesId::configuration';
 
-    const FEED_TYPE = [
+    private const FEED_TYPE = [
         ['type'=>'categories','flagName'=>'categories-feed-version','indexerName'=>'catalog_data_exporter_categories',
         'registryTableName'=>'catalog_category_data_submitted_hash'],
         ['type'=>'productoverrides','flagName'=>'product-overrides-feed-version',
@@ -145,6 +145,7 @@ class ClearEnvironment extends AbstractAction
             }
         } else {
             $result = 'An error occurred clearing the data space. See logs for details';
+                //phpcs:ignore Magento2.Functions.DiscouragedFunction.Discouraged
                 $this->logger->error(print_r($result));
         }
         return $jsonResult->setData($result);
@@ -152,6 +153,8 @@ class ClearEnvironment extends AbstractAction
 
     /**
      * Reset SaaS indexed feed data in order to re-generate
+     *
+     * @param string $indexerName
      *
      * @throws \Zend_Db_Statement_Exception
      */
@@ -164,6 +167,8 @@ class ClearEnvironment extends AbstractAction
     /**
      * Reset SaaS submitted feed data in order to re-send
      *
+     * @param string $flagName
+     * @param string $registryTableName
      * @throws \Zend_Db_Statement_Exception
      */
     public function resetSubmittedData($flagName, $registryTableName): void

@@ -18,6 +18,7 @@ class DeleteEnvironmentData extends Field
     /**
      * @var string
      */
+    //phpcs:ignore PSR2.Classes.PropertyDeclaration.Underscore,Magento2.Commenting.ClassPropertyPHPDocFormatting.Missing
     protected $_template = 'MagentoEse_SaasDataManagement::system/config/clear-environment.phtml';
 
     /**
@@ -62,6 +63,7 @@ class DeleteEnvironmentData extends Field
      * @param  AbstractElement $element
      * @return string
      */
+     //phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore,Magento2.Annotation.MethodArguments.NoCommentBlock
     protected function _getElementHtml(AbstractElement $element) : string
     {
         return $this->_toHtml();
@@ -85,6 +87,7 @@ class DeleteEnvironmentData extends Field
      */
     public function getButtonHtml() : string
     {
+        //phpcs:ignore Magento2.PHP.LiteralNamespaces.LiteralClassUsage
         $html = $this->getLayout()->createBlock('Magento\Backend\Block\Widget\Button')->setData(
             [
                 'id' => 'clear_environment_button',

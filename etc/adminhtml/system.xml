@@ -12,15 +12,15 @@
             <tab>service</tab>
             <resource>Magento_ServicesId::services_id</resource>
             <group id="sass_reset" translate="label" type="text" sortOrder="5000" showInDefault="1" showInWebsite="0" showInStore="0">
-                <label>Saas Environment Reset</label>
+                <label>Saas Catalog Reset</label>
                     <field id="request_environment_delete" translate="label comment" type="button" sortOrder="9" showInDefault="1" showInWebsite="0" showInStore="0">
-                        <label>Clear Data Space</label>
+                        
                         <comment>You will need to deactivate the Saas integration on other sites that are currently using the data space you wish to clear</comment>
                         <frontend_model>MagentoEse\SaasDataManagement\Block\Adminhtml\DeleteEnvironmentData</frontend_model>
                     </field>
-                    <field id="environment_id" translate="label" type="hidden" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
-                        <label>Environment Type</label>
+                    <field id="environment_id" type="hidden" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                         <config_path>services_connector/services_id/environment_id</config_path>
+                        <comment>Data Spaces and API keys are set under System->Services->Commerce Services Connector</comment>
                     </field>
             </group>
         </section>
