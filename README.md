@@ -5,7 +5,7 @@ This module adds an option to the Commerce Services Connector section of the Mag
 The module is included in GXD managed demo environments in versions 2.4.3-p1+, but can be added manually to any installation.
 
 ### Usage
-See the instructions on the GXD Sharepoint Site.
+Reset is available under Stores->Configuration->Services->Saas Catalog Reset. You will need to have your API Keys and Data Space selected first. You will need to deactivate the Saas integration on other sites that are currently using the data space you wish to clear
 
 ### Installing on environments other than GXD managed Commerce Cloud
 
