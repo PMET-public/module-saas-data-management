@@ -25,7 +25,7 @@ class ServicesClient implements ServicesClientInterface
     /**
      * Config paths
      */
-    private const ROUTE_CONFIG_PATH = 'services_connector/services_id/registry_api_path';
+    private const ROUTE_CONFIG_PATH = 'services_connector_magentoese/services_id/registry_api_path';
     private const ENVIRONMENT_CONFIG_PATH = 'magento_saas/environment';
 
     /**

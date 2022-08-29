@@ -25,7 +25,7 @@ class ServicesConfig implements ServicesConfigInterface
     private const CONFIG_PATH_ENVIRONMENT = 'services_connector/services_id/environment';
     private const CONFIG_PATH_ENVIRONMENT_ID = 'services_connector/services_id/environment_id';
     private const CONFIG_PATH_ENVIRONMENT_NAME = 'services_connector/services_id/environment_name';
-    private const CONFIG_PATH_REGISTRY_API_VERSION = 'services_connector/services_id/registry_api_version';
+    private const CONFIG_PATH_REGISTRY_API_VERSION = 'services_connector_magentoese/services_id/registry_api_version';
 
     /**
      * Config path values for Services Connector
