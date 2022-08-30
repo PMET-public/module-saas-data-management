@@ -11,7 +11,7 @@ use Magento\Backend\Block\Template\Context;
 use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Data\Form\Element\AbstractElement;
-use MagentoEse\SaasDataManagement\Model\ServicesConfigInterface;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 
 class DeleteEnvironmentData extends Field
 {
@@ -24,25 +24,30 @@ class DeleteEnvironmentData extends Field
     /**
      * @var string
      */
-    private const ENVIRONMENT_URL = 'sassdatamanagement/index/clearenvironment';
+    private const CLEARDATA_URL = 'sassdatamanagement/index/clearenvironment';
 
     /**
-     * @var ServicesConfigInterface
+     * @var string
      */
-    private $servicesConfig;
+    private const CLEARAPI_URL = 'sassdatamanagement/index/unassigndataspace';
+
+    /**
+     * @var ScopeConfigInterface
+     */
+    private $scopeConfigInterface;
 
     /**
      * @param Context $context
-     * @param ServicesConfigInterface $servicesConfig
      * @param array $data
+     * @param ScopeConfigInterface $scopeConfigInterface
      */
     public function __construct(
         Context $context,
-        ServicesConfigInterface $servicesConfig,
+        ScopeConfigInterface $scopeConfigInterface,
         array $data = []
     ) {
-        $this->servicesConfig = $servicesConfig;
-        parent::__construct($context, $data);
+        $this->scopeConfigInterface = $scopeConfigInterface;
+        parent::__construct($context,$data);
     }
 
     /**
@@ -70,13 +75,34 @@ class DeleteEnvironmentData extends Field
     }
 
     /**
-     * Return ajax url for the environment route
+     * Return ajax url for the clear data route
      *
      * @return string
      */
-    public function getEnvironmentUrl() : string
+    public function getClearDataUrl() : string
     {
-        return $this->getUrl(self::ENVIRONMENT_URL);
+        return $this->getUrl(self::CLEARDATA_URL);
+    }
+
+    /**
+     * Return ajax url for the clear data route
+     *
+     * @return string
+     */
+    public function getUnassignDataSpaceUrl() : string
+    {
+        return $this->getUrl(self::CLEARAPI_URL);
+    }
+
+    /**
+     * Get environment name string for display in UI
+     *
+     * @return string
+     */
+    public function getEnvironmentName() : string
+    {
+        return $this->scopeConfigInterface->getValue('services_connector/services_id/environment_name',
+                ScopeConfigInterface::SCOPE_TYPE_DEFAULT);
     }
 
     /**
@@ -95,12 +121,13 @@ class DeleteEnvironmentData extends Field
             ]
         )->toHtml();
 
-        // $html .= $this->getLayout()->createBlock('Magento\Backend\Block\Widget\Button')->setData(
-        //     [
-        //         'id' => 'cancel_environment_button',
-        //         'label' => __('Cancel')
-        //     ]
-        // )->toHtml();
+        //phpcs:ignore Magento2.PHP.LiteralNamespaces.LiteralClassUsage
+        $html .= $this->getLayout()->createBlock('Magento\Backend\Block\Widget\Button')->setData(
+            [
+                'id' => 'unassign_dataspace_button',
+                'label' => __('Unassign Data Space')
+            ]
+        )->toHtml();
 
         return $html;
     }

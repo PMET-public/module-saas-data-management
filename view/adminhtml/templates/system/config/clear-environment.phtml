@@ -16,12 +16,17 @@
         $('#row_sass_catalog_reset_sass_reset_environment_id > td.label > label > span').hide();
         if($('#sass_catalog_reset_sass_reset_environment_id').val()){
             $('#clear_environment_button').show();
+            $('#unassign_dataspace_button').show();
             $('#row_sass_catalog_reset_sass_reset_request_environment_delete > td.value > p').show();
         }else{
             $('#clear_environment_button').prop('disabled',true).css('opacity',0.5);
-            $('#row_sass_catalog_reset_sass_reset_request_environment_delete > td.value > p')
-            .prepend('<P style=color:red>NO DATA SPACE HAS BEEN ASSIGNED</P>');
+            $('#unassign_dataspace_button').prop('disabled',true).css('opacity',0.5);
+            $('#environment_name_span').html('<P style=color:red>NO DATA SPACE HAS BEEN ASSIGNED</P>');
+            //$('#row_sass_catalog_reset_sass_reset_request_environment_delete > td.value > p')
+            //.prepend('<P style=color:red>NO DATA SPACE HAS BEEN ASSIGNED</P>');
         }
+
+        ///clear data
         $('#clear_environment_button').click(function () {
             let environmentName = $('#sass_catalog_reset_sass_reset_saas_environment_environment_name').val();
             let environmentId = $('#sass_catalog_reset_sass_reset_environment_id').val();
@@ -32,7 +37,7 @@
                 //'uri': `registry`,
                 'environmentName': environmentName
             };
-            new Ajax.Request('<?= $block->escapeUrl($block->getEnvironmentUrl()) ?>', {
+            new Ajax.Request('<?= $block->escapeUrl($block->getClearDataUrl()) ?>', {
                 parameters:     params,
                 loaderArea:     false,
                 asynchronous:   true,
@@ -76,9 +81,60 @@
                 })
             }
         });
+
+        //unassign data space
+        $('#unassign_dataspace_button').click(function () {
+
+            new Ajax.Request('<?= $block->escapeUrl($block->getUnassignDataSpaceUrl()) ?>', {
+                parameters:     null,
+                loaderArea:     false,
+                asynchronous:   true,
+                onCreate: function() {
+                    //requestEnvironmentSpan.find('.environment_clear').hide();
+                    //requestEnvironmentSpan.find('.error').hide();
+                    requestEnvironmentSpan.find('.processing').show();
+                    $('#clear_environment_message_span').text('');
+                },
+                onSuccess: function(response) {
+                    requestEnvironmentSpan.find('.processing').hide();
+
+                    var resultText = '';
+                    if (response.status > 200) {
+                        resultText = response.statusText;
+                        showErrorAlert(resultText);
+                    } else if (response.responseJSON !== null
+                        && response.status === 200
+                        && !response.responseJSON.message
+                    ) {
+                        resultText = '<?= /* @noEscape */ __("Success. Data Space Unassigned...") ?>';
+                        //requestEnvironmentSpan.find('.environment_cleared').show();
+                    } else {
+                        resultText = '<?= /* @noEscape */ __("An error occurred unassigning data space") ?>';
+                        requestEnvironmentSpan.find('.error').show();
+                        showErrorAlert(resultText);
+                    }
+                    $('#clear_environment_message_span').text(resultText);
+                    $('#clear_environment_button').prop('disabled',true).css('opacity',0.5);
+                    $('#unassign_dataspace_button').prop('disabled',true).css('opacity',0.5);
+                    $('#environment_name_span').html('<P style=color:red>NO DATA SPACE HAS BEEN ASSIGNED</P>');
+                }
+            });
+
+            function showErrorAlert(content) {
+                modalAlert({
+                    title: 'Magento Services Error',
+                    content: content,
+                    clickableOverlay: false,
+                    actions: {
+                        always: function() {}
+                    }
+                })
+            }
+        });
+
     });
 </script>
-
+<span></span><p class="envname"><span>Assigned Data Space: </span><span id="environment_name_span"><?= $block->getEnvironmentName() ?></span></p></span>
 <?= $block->getButtonHtml() ?>
 <span class="update_environment-indicator" id="clear_environment_span">
     <img class="processing" hidden="hidden" alt="Clearing environment" 
@@ -89,4 +145,6 @@
     <img class="error" hidden="hidden" alt="Error" style="margin:-1px 5px" 
     src="<?= $escaper->escapeHtml($block->getViewFileUrl('images/rule_component_remove.gif')) ?>"/>
     <span id="clear_environment_message_span"></span>
+    
 </span>
+
