@@ -7,7 +7,7 @@
       "MIT"
     ],
     "require":{
-      "magento/saas-catalog": "*"
+      "magento/module-saas-catalog": "*"
     },
     "autoload": {
       "psr-4": {
