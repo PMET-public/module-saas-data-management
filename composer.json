@@ -7,7 +7,8 @@
       "MIT"
     ],
     "require":{
-      "magento/module-saas-catalog": "*"
+      "magento/module-saas-catalog": "*",
+      "magento/module-services-id-graph-ql-server": "*"
     },
     "autoload": {
       "psr-4": {
