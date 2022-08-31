@@ -101,8 +101,13 @@ class DeleteEnvironmentData extends Field
      */
     public function getEnvironmentName() : string
     {
-        return $this->scopeConfigInterface->getValue('services_connector/services_id/environment_name',
+        $envName = $this->scopeConfigInterface->getValue('services_connector/services_id/environment_name',
                 ScopeConfigInterface::SCOPE_TYPE_DEFAULT);
+        if($envName){
+            return $envName;
+        }else{
+            return '';
+        }
     }
 
     /**
