@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace MagentoEse\SaasDataManagement\Controller\Adminhtml\Index;
 
-
 use Magento\Framework\App\ActionInterface as AbstractAction;
 use Magento\Config\Model\ResourceModel\Config as ResourceConfig;
 use Magento\Framework\Controller\Result\JsonFactory;
@@ -15,7 +14,7 @@ use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\App\Cache\TypeListInterface;
 
 /**
- * Controller responsible for communicating with the Magento SaaS Registry service
+ * resets value of data space in core_config_data
  */
 class UnassignDataSpace implements AbstractAction
 {
@@ -30,12 +29,15 @@ class UnassignDataSpace implements AbstractAction
 
     /**
      * @param ResourceConfig $resourceConfig
-     * @param JsonFactory $resultJsonFactory
-     * @param TypeListInterface $typelist
+     * @param JsonFactory $resultJasonFactory
+     * @param TypeListInterface $typeList
      */
 
-    public function __construct(ResourceConfig $resourceConfig, JsonFactory $resultJasonFactory,
-    TypeListInterface $typeList){
+    public function __construct(
+        ResourceConfig $resourceConfig,
+        JsonFactory $resultJasonFactory,
+        TypeListInterface $typeList
+    ) {
         $this->resourceConfig = $resourceConfig;
         $this->resultJasonFactory = $resultJasonFactory;
         $this->typeList = $typeList;

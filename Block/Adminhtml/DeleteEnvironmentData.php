@@ -38,8 +38,8 @@ class DeleteEnvironmentData extends Field
 
     /**
      * @param Context $context
-     * @param array $data
      * @param ScopeConfigInterface $scopeConfigInterface
+     * @param array $data
      */
     public function __construct(
         Context $context,
@@ -47,7 +47,7 @@ class DeleteEnvironmentData extends Field
         array $data = []
     ) {
         $this->scopeConfigInterface = $scopeConfigInterface;
-        parent::__construct($context,$data);
+        parent::__construct($context, $data);
     }
 
     /**
@@ -101,11 +101,13 @@ class DeleteEnvironmentData extends Field
      */
     public function getEnvironmentName() : string
     {
-        $envName = $this->scopeConfigInterface->getValue('services_connector/services_id/environment_name',
-                ScopeConfigInterface::SCOPE_TYPE_DEFAULT);
-        if($envName){
+        $envName = $this->scopeConfigInterface->getValue(
+            'services_connector/services_id/environment_name',
+            ScopeConfigInterface::SCOPE_TYPE_DEFAULT
+        );
+        if ($envName) {
             return $envName;
-        }else{
+        } else {
             return '';
         }
     }

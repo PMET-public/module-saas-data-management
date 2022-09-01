@@ -134,7 +134,8 @@
 
     });
 </script>
-<span></span><p class="envname"><span>Assigned Data Space: </span><span id="environment_name_span"><?= $block->getEnvironmentName() ?></span></p></span>
+<span></span><p class="envname"><span>Assigned Data Space: </span>
+<span id="environment_name_span"><?= $escaper->escapeHtml($block->getEnvironmentName()) ?></span></p></span>
 <?= $block->getButtonHtml() ?>
 <span class="update_environment-indicator" id="clear_environment_span">
     <img class="processing" hidden="hidden" alt="Clearing environment" 
