@@ -1,5 +1,52 @@
 <?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="MagentoEse\SaasDataManagement\Model\ServicesClientInterface" type="MagentoEse\SaasDataManagement\Model\ServicesClient" />
-    <preference for="MagentoEse\SaasDataManagement\Model\ServicesConfigInterface" type="MagentoEse\SaasDataManagement\Model\ServicesConfig" />
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="MagentoEse\SaasDataManagement\Model\ServicesClientInterface" 
+        type="MagentoEse\SaasDataManagement\Model\ServicesClient" />
+    <preference for="MagentoEse\SaasDataManagement\Model\ServicesConfigInterface" 
+        type="MagentoEse\SaasDataManagement\Model\ServicesConfig" />
+    <preference for="MagentoEse\SaasDataManagement\Api\Data\DataSpaceInterface" 
+        type="MagentoEse\SaasDataManagement\Model\DataSpace" />
+    <preference for="MagentoEse\SaasDataManagement\Api\DataSpaceRepositoryInterface" 
+        type="MagentoEse\SaasDataManagement\Model\DataSpaceRepository" />
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="coretechDatasSpaceCatalogClear" xsi:type="object">
+                    MagentoEse\SaasDataManagement\Console\Command\ClearCatalog
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="coretechDatasSpaceCatalogClearConfigure" xsi:type="object">
+                    MagentoEse\SaasDataManagement\Console\Command\ClearConfigure
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="coretechDatasSpaceCatalogConfigure" xsi:type="object">
+                    MagentoEse\SaasDataManagement\Console\Command\Configure
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="coretechDatasSpaceGetEnvironmentId" xsi:type="object">
+                    MagentoEse\SaasDataManagement\Console\Command\GetEnvironmentId
+                </item>
+            </argument>
+        </arguments>
+    </type>
 </config>

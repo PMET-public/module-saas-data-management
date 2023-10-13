@@ -127,8 +127,8 @@ class ClearEnvironment extends AbstractAction
         $apiVersion = $this->servicesConfig->getRegistryApiVersion();
         $method = $this->getRequest()->getParam('method', 'GET');
         $uri = $this->getRequest()->getParam('uri', '');
+        //$uri = 'registry/MAG005476355/environments/ae113b59-b765-4d23-b4dd-fbd2424684d4/cleanup';
         $environmentName = $this->getRequest()->getParam('environmentName');
-
         $payload = ['environmentName' => $environmentName];
         $url = $this->servicesClient->getUrl($apiVersion, $uri);
         $result = $this->servicesClient->request($method, $url, $this->serializer->serialize($payload));

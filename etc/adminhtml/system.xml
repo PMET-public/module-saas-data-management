@@ -5,22 +5,33 @@
  * See COPYING.txt for license details.
  */
 -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <section id="sass_catalog_reset" translate="label" type="text" sortOrder="102" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="sass_catalog_reset" translate="label" type="text" sortOrder="102" showInDefault="1" 
+        showInWebsite="1" showInStore="1">
             <label>Saas Catalog Reset</label>
             <tab>service</tab>
             <resource>Magento_ServicesId::services_id</resource>
-            <group id="sass_reset" translate="label" type="text" sortOrder="5000" showInDefault="1" showInWebsite="0" showInStore="0">
+            <group id="sass_reset" translate="label" type="text" sortOrder="5000" showInDefault="1" 
+            showInWebsite="0" showInStore="0">
                 <label>Saas Catalog Reset</label>
-                    <field id="request_environment_delete" translate="label comment" type="button" sortOrder="9" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <field id="request_environment_delete" translate="label comment" type="button" 
+                    sortOrder="9" showInDefault="1" showInWebsite="0" showInStore="0">
                         
-                        <comment>You will need to unassign the data space on other sites that are currently using the data space you wish to clear</comment>
-                        <frontend_model>MagentoEse\SaasDataManagement\Block\Adminhtml\DeleteEnvironmentData</frontend_model>
+                        <comment>You will need to unassign the data space on other sites that are 
+                            currently using the data space you wish to clear
+                        </comment>
+                        <frontend_model>
+                            MagentoEse\SaasDataManagement\Block\Adminhtml\DeleteEnvironmentData
+                        </frontend_model>
                     </field>
-                    <field id="environment_id" type="hidden" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <field id="environment_id" type="hidden" sortOrder="10" showInDefault="1"
+                    showInWebsite="0" showInStore="0">
                         <config_path>services_connector/services_id/environment_id</config_path>
-                        <comment>Data Spaces and API keys are set under System->Services->Commerce Services Connector</comment>
+                        <comment>
+                            Data Spaces and API keys are set under System->Services->Commerce Services Connector
+                        </comment>
                     </field>
             </group>
         </section>
