@@ -22,9 +22,7 @@ xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file
                         <comment>You will need to unassign the data space on other sites that are 
                             currently using the data space you wish to clear
                         </comment>
-                        <frontend_model>
-                            MagentoEse\SaasDataManagement\Block\Adminhtml\DeleteEnvironmentData
-                        </frontend_model>
+                        <frontend_model>MagentoEse\SaasDataManagement\Block\Adminhtml\DeleteEnvironmentData</frontend_model>
                     </field>
                     <field id="environment_id" type="hidden" sortOrder="10" showInDefault="1"
                     showInWebsite="0" showInStore="0">
