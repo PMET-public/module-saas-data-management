@@ -78,13 +78,11 @@ class Configure extends Command
             //check that env id is passed
             if (empty($input->getOption(self::INPUT_ENVIRONMENT_ID))) {
                 throw new \InvalidArgumentException('--environment-id is required');
-                return Cli::RETURN_FAILURE;
             }
             
             //check that env id is valid uuid
             if (!$this->isUUID($input->getOption(self::INPUT_ENVIRONMENT_ID))) {
                 throw new \InvalidArgumentException('--environment-id is not a valid UUID');
-                return Cli::RETURN_FAILURE;
             }
             $dataSpace->setEnvironmentId($input->getOption(self::INPUT_ENVIRONMENT_ID));
             
@@ -92,73 +90,56 @@ class Configure extends Command
             if (!empty($input->getOption(self::INPUT_PRODUCTION_PRIVATE_KEY))) {
                 $dataSpace->setProductionPrivateKey($input->getOption(self::INPUT_PRODUCTION_PRIVATE_KEY));
             } else {
-                //if we are missing a key, then return an error
                 if (empty($dataSpace->getProductionPrivateKey())) {
                     throw new \InvalidArgumentException('--production-private-key is required');
-                    return Cli::RETURN_FAILURE;
                 }
             }
             if (!empty($input->getOption(self::INPUT_PRODUCTION_PUBLIC_KEY))) {
                 $dataSpace->setProductionPublicKey($input->getOption(self::INPUT_PRODUCTION_PUBLIC_KEY));
             } else {
-                //if we are missing a key, then return an error
                 if (empty($dataSpace->getProductionPublicKey())) {
                     throw new \InvalidArgumentException('--production-public-key is required');
-                    return Cli::RETURN_FAILURE;
                 }
             }
 
             if (!empty($input->getOption(self::INPUT_SANDBOX_PRIVATE_KEY))) {
                 $dataSpace->setSandboxPrivateKey($input->getOption(self::INPUT_SANDBOX_PRIVATE_KEY));
             } else {
-                //if we are missing a key, then return an error
                 if (empty($dataSpace->getSandboxPrivateKey())) {
                     throw new \InvalidArgumentException('--sandbox-private-key is required');
-                    return Cli::RETURN_FAILURE;
                 }
             }
 
             if (!empty($input->getOption(self::INPUT_SANDBOX_PUBLIC_KEY))) {
                 $dataSpace->setSandboxPublicKey($input->getOption(self::INPUT_SANDBOX_PUBLIC_KEY));
             } else {
-                //if we are missing a key, then return an error
                 if (empty($dataSpace->getSandboxPublicKey())) {
                     throw new \InvalidArgumentException('--sandbox-public-key is required');
-                    return Cli::RETURN_FAILURE;
                 }
             }
 
             if (!empty($input->getOption(self::INPUT_ENVIRONMENT_NAME))) {
                 $dataSpace->setEnvironmentName($input->getOption(self::INPUT_ENVIRONMENT_NAME));
             } else {
-                //if we are missing a key, then return an error
                 if (empty($dataSpace->getEnvironmentName())) {
                     throw new \InvalidArgumentException('--environment-name is required');
-                    return Cli::RETURN_FAILURE;
                 }
             }
 
             if (!empty($input->getOption(self::INPUT_PROJECT_NAME))) {
                 $dataSpace->setProjectName($input->getOption(self::INPUT_PROJECT_NAME));
             } else {
-                //if we are missing a key, then return an error
                 if (empty($dataSpace->getProjectName())) {
                     throw new \InvalidArgumentException('--project-name is required');
-                    return Cli::RETURN_FAILURE;
                 }
             }
-
             if (!empty($input->getOption(self::INPUT_PROJECT_ID))) {
                 $dataSpace->setProjectId($input->getOption(self::INPUT_PROJECT_ID));
             } else {
-                //if we are missing a key, then return an error
                 if (empty($dataSpace->getProjectId())) {
                     throw new \InvalidArgumentException('--project-id is required');
-                    return Cli::RETURN_FAILURE;
                 }
             }
-
-            //validate?
             $this->dataSpaceRepository->save($dataSpace);
             $output->writeln('Data Space Configuration saved');
             return Cli::RETURN_SUCCESS;
