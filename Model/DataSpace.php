@@ -404,9 +404,9 @@ class DataSpace implements DataSpaceInterface
     /**
      * Get IMS Org Id
      *
-     * @return string
+     * @return mixed
      */
-    public function getImsOrgId(): string
+    public function getImsOrgId(): mixed
     {
         return $this->imsOrgId;
     }

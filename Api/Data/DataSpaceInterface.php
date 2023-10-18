@@ -202,9 +202,9 @@ interface DataSpaceInterface
     /**
      * Gets ImsOrgig assigned to the instance
      *
-     * @return string
+     * @return mixed
      */
-    public function getImsOrgId() :string;
+    public function getImsOrgId() :mixed;
 
     /**
      * Sets ImsOrgId assigned to the instance
